@@ -18,7 +18,6 @@ export class CartComponent implements OnInit {
       {
         
          this.cartItems = JSON.parse(localStorage.getItem('cart'));
-        // console.log('cart list');
          console.log(this.cartItems);
          this.cart.addItemsCart(this.cartItems)
          .subscribe(

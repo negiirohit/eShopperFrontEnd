@@ -1,8 +1,8 @@
-<div class="col-sm-9 padding-right">
-  <div class="features_items" *ngIf="FeaturedProducts"><!--features_items-->
+<div class=" padding-right">
+  <div class="features_items" *ngIf="allFeaturedProducts">
     
-    <h2 class="title text-center">Features Items</h2>
-    <div class="col-sm-4" *ngFor="let product of FeaturedProducts">
+    <h2 class="title text-center">Featured Items</h2>
+    <div class="col-sm-4" *ngFor="let product of pagedFeaturedProducts">
       <div class="product-image-wrapper">
 
         <div class="single-products">
@@ -22,20 +22,34 @@
         </div>
         <div class="choose">
           <ul class="nav nav-pills nav-justified">
-            <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-            <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
+            <li><a><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+            <li><a><i class="fa fa-plus-square"></i>Add to compare</a></li>
           </ul>
         </div>
       </div>
     </div>
     
-    
-    <ul class="pagination">
-      <li class="active"><a href="">1</a></li>
-      <li><a href="">2</a></li>
-      <li><a href="">3</a></li>
-      <li><a href="">&raquo;</a></li>
-    </ul>
 
-  </div><!--features_items-->
+      
+
+  </div><!--featured_items-->
+  <div class="text-right">
+  <ul *ngIf="pager.pages && pager.pages.length" class="float-right pagination" >
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(1)">First</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(pager.currentPage - 1)">&laquo;</a>
+    </li>
+    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+        <a (click)="setPage(page)">{{page}}</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.currentPage + 1)">&raquo;</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.totalPages)">Last</a>
+    </li>
+  </ul>
+</div>
 </div>
